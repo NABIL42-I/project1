@@ -52,7 +52,7 @@ void showMotivationalQuote() {
     };
 
     int randomIndex = rand() % 5;
-    printf("✨ %s\n", quotes[randomIndex]);
+    printf("~>%s\n", quotes[randomIndex]);
 
 }
 
@@ -69,16 +69,18 @@ void greetUser() {
     int hour = atoi(timeStr);
 
     // Display greeting based on the time of day
+    printf("\n");
     if (hour >= 5 && hour < 12) {
-        printf("   Good Morning! Welcome to the Online Book Shop.\n");
+        printf("~~~~~~~~~~~~~~~~~~~Good Morning! Welcome to the Online Book Shop.~~~~~~~~~~~~~~~~~~~\n");
     } else if (hour >= 12 && hour < 17) {
-        printf("   Good Afternoon! Welcome to the Online Book Shop.\n");
+        printf("~~~~~~~~~~~~~~~~~~~Good Afternoon! Welcome to the Online Book Shop.~~~~~~~~~~~~~~~~\n");
     } else if (hour >= 17 && hour < 21) {
-        printf("   Good Evening! Welcome to the Online Book Shop.\n");
+        printf("~~~~~~~~~~~~~~~~~~Good Evening! Welcome to the Online Book Shop.~~~~~~~~~~~~~~~~~~\n");
     } else {
-        printf("   Good Night! Welcome to the Online Book Shop.\n");
+        printf("~~~~~~~~~~~~~~~~~~Good Night! Welcome to the Online Book Shop.~~~~~~~~~~~~~~~~~~~\n");
     }
 }
+
 
 // Function to add a book
 void addBook() {
@@ -414,37 +416,6 @@ void showNonFictionBooks() {
     getchar(); // consume leftover newline
     getchar(); // wait for user to press Enter
 }
-
-// #include <stdio.h>
-// #include <stdlib.h>
-
-void showNonFictionBooks1() {
-    system("cls");
-
-    printf("\n\n\t\t\t📘🌍 Explore Non-Fiction Realms 🌍📘\n");
-    printf("\t\t------------------------------------------------------\n\n");
-
-    printf("\t\t  🔹 The Diary of a Young Girl\t\t⭐️⭐️⭐️⭐️⭐️\n");
-    printf("\t\t  🔹 The Power of Habit\t\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 Thinking, Fast and Slow\t\t⭐️⭐️⭐️⭐️⭐️\n");
-    printf("\t\t  🔹 Meditations\t\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 The Body Keeps the Score\t\t⭐️⭐️⭐️⭐️⭐️\n");
-    printf("\t\t  🔹 In Cold Blood\t\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 Into the Wild\t\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 SALT, FAT, ACID, HEAT\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 The Lean Startup\t\t\t⭐️⭐️⭐️⭐️☆\n");
-    printf("\t\t  🔹 Sapiens: A Brief History...\t\t⭐️⭐️⭐️⭐️⭐️\n");
-    printf("\t\t  🔹 The Audacity of Hope\t\t⭐️⭐️⭐️⭐️☆\n");
-
-    printf("\n\t\t------------------------------------------------------\n");
-    printf("\t\t   💡 Discover wisdom from the minds of legends 💡\n");
-
-    printf("\n\n\t\t\tPress Enter to return to the main menu...");
-    getchar(); // consume newline if needed
-    getchar(); // wait for user input
-}
-
-
 
 void showPoetryBooks() {
     system("cls");
@@ -1045,9 +1016,186 @@ void goodbyeMessage() {
     printf("\n\n");
 }
 
-// Main menu
-int main() {
+// Day of Week Calculation using Zeller's Congruence-like formula for Jan 1"
+// or more informally
+// "Mod 7 Year-Day Offset Formula"
+int First_Day_of_Year(int yrrrear){
+    int day = (yrrrear * 365 + (yrrrear - 1) / 4 - (yrrrear - 1) / 100 + (yrrrear - 1) / 400) % 7;
+    return day; // Sunday = 0
+}
+
+// Calender Fuction 
+int  calender(){
+    system("cls");
+    int i,j,TotalDays,weekdays ,spaceCounter = 0,year;
+    printf("Enter your Year : ");
+    scanf("%d",&year);
+    printf("\n");
+
+    char month[12][20]={"January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    int DaysInMonth[]={ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    printf("\n*********************** WELCOME TO %d ******************************\n",year);
+
+    // check if it is a leap year
+    if ((year%4 == 0 && year%100!= 0) || (year%400==0)){
+        DaysInMonth[1] = 29;
+    }
+
+    weekdays = First_Day_of_Year(year);
+
+    for(i=0;i<12;i++){
+        printf("\n\n-------------------- %s ----------------------\n\n",month[i]);
+        printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n\n");
+
+        for(spaceCounter = 0; spaceCounter < weekdays; spaceCounter++)
+            printf("     ");
+
+        TotalDays = DaysInMonth[i];
+
+        for(j=1; j<=TotalDays; j++){
+            printf("%5d",j);
+            weekdays++;
+            if(weekdays > 6){
+                weekdays = 0;
+                printf("\n");
+            }
+        }
+      
+    }
+    return year;
+}
+void Credits(){
+        char names[5][20] = {"SHAWON", "MARUF", "ABIR", "ANTU", "NABIL"};
     
+        printf("=================================================\n");
+        printf("               🎓 Our Team Members 🎓           \n");
+        printf("=================================================\n");
+    
+        for (int i = 0; i < 5; i++) {
+        printf("🔹                     %-10s\n", names[i]);  // Left-aligned with bullet
+        }
+    
+        printf("=================================================\n");
+    }
+  
+void customer_feedback() {
+    system("cls");
+    char name[50];
+    char feedback[500];
+    FILE *file;
+
+    // Open file in append mode
+    file = fopen("feedback.txt", "a");
+
+    if (file == NULL) {
+        printf("Error opening feedback file!\n");
+        return;
+    }
+
+    printf("\n============================================\n");
+    printf("          Customer Feedback Form          \n");
+    printf("============================================\n");
+    getchar();
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = 0;  // remove newline
+    printf("Enter your feedback: ");
+    fgets(feedback, sizeof(feedback), stdin);
+    feedback[strcspn(feedback, "\n")] = 0;
+
+    // Write to file
+    fprintf(file, "Name     : %s\n", name);
+    fprintf(file, "Feedback : %s\n", feedback);
+    fprintf(file, "--------------------------------------------\n");
+
+    fclose(file);  // Close file
+
+    // Display confirmation
+    printf("\n============================================\n");
+    printf("        Thank You for Your Feedback!       \n");
+    printf("============================================\n");
+    printf("Name     : %s\n", name);
+    printf("Feedback : %s\n", feedback);
+    printf("============================================\n");
+    printf("\n============================================\n");
+printf("       Thank You for Your Feedback!       \n");
+printf("Your feedback helps us improve our service.   \n");
+printf("We truly appreciate your time and thoughts.    \n");
+printf("============================================\n");
+ // Prompt user to return to the main menu
+ printf("\n\t\t\tPress Enter to return to the main menu...");
+ getchar(); // consume leftover newline
+ getchar(); // wait for user input
+}
+
+void showCurrentDateTime() {
+    time_t t;
+    struct tm *tm_info;
+    char buffer[100];
+
+    // Get the current time
+    time(&t);
+    tm_info = localtime(&t);
+
+    printf("\n");
+    printf("====================================================\n");
+
+    // Print the current date and time in a formal style
+    strftime(buffer, sizeof(buffer), "%A", tm_info);  // Weekday name
+    printf("Day of the Week: %s\n", buffer);
+
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d", tm_info);  // Date
+    printf("Current Date: %s\n", buffer);
+
+    strftime(buffer, sizeof(buffer), "%H:%M:%S", tm_info);  // Time
+    printf("Current Time: %s\n", buffer);
+
+    printf("====================================================\n");
+}
+void Others(){
+       int com;
+       printf("What's on your mind to do?\n\n");
+    printf("\n\t\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+    printf("\n\t\t\t| (1) Calender                 |");
+    printf("\n\t\t\t| (2) Team Member              |");
+    printf("\n\t\t\t| (3) Customer Feedback        |");
+    printf("\n\t\t\t| (4) Time                     |");
+    printf("\n\t\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n");
+    printf("Please, Select !!\n");
+    printf("Enter : ");
+     scanf("%d",&com);
+     if(com==1){
+       int year =  calender();
+        printf("\n\n");
+        printf("\n\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        printf("\n\t\t\t   Correctly generates the calendar for the year %d  \n",year);
+        printf("\n\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        // printf("%d",year);
+    
+        // Prompt user to return to the main menu
+        printf("\n\t\t\tPress Enter to return to the main menu...");
+        getchar(); // consume leftover newline
+        getchar(); // wait for user input
+     }
+     else if(com==2){
+           Credits();
+     }
+    else if(com==3){
+        customer_feedback();
+    }
+    else if(com==4){
+        showCurrentDateTime();
+    }
+    else {
+        printf("-------------Invalid Try Once more!!!!----------------\n");
+    }
+}
+// Main menu
+void printDecorativeLine() {
+    printf("\n=============================================================\n");
+}
+int main() {
     int choice;
 
     // Seed the random number generator
@@ -1057,79 +1205,97 @@ int main() {
     greetUser();
     
     showMotivationalQuote();
+
     do
     {
-        printf("\n--- Online Book Shop Menu ---\n");
+        printDecorativeLine();
+        printf("\t~~~~~~Online Book Shop Menu~~~~~~");
+        printDecorativeLine();
+
+        printf("\n\t1. Add Book\n");
+        printf("\t2. Display Books\n");
+        printf("\t3. Search Book\n");
+        printf("\t4. Buy Book\n");
+        printf("\t5. Delete Book\n");
+        printf("\t6. Update Book Info\n");
+        printf("\t7. Register New User\n");
+        printf("\t8. Login as User\n");
+        printf("\t9. Suggest Books\n");
+        printf("\t10. Others\n");
+        printf("\t11. Exit\n");
+
+        printDecorativeLine();
         
-        printf("1. Add Book\n");
-
-        printf("2. Display Books\n");
-        printf("3. Search Book\n");
-
-        printf("4. Buy Book\n");
-
-        printf("5. Delete Book\n");
-        printf("6. Update Book Info\n");
-        printf("7. Register New User\n");
-
-        printf("8. Login as User\n");
-        printf("9. Suggest Books\n");
-
-        printf("10.Others\n");
-        // printf("Enter your choice: ");
-        // scanf("%d", &choice);
-        printf("11.Exit\n");
-        printf("Enter your choice: ");
+        printf("\n\tEnter your choice: ");
         scanf("%d", &choice);
+
+        printf("\n");
 
         switch (choice)
         {
-            
-            case 1: addBook(); 
-                    break;
+            case 1: 
+                printf("\tAdding a new book...\n");
+                addBook(); 
+                break;
                     
-            case 2: displayBooks();
-                    break;
+            case 2: 
+                printf("\tDisplaying books...\n");
+                displayBooks();
+                break;
                     
-            case 3: searchBook(); 
-                    break;
+            case 3: 
+                printf("\tSearching for a book...\n");
+                searchBook(); 
+                break;
                     
-            case 4: buyBook(); 
-                    break;
+            case 4: 
+                printf("\tProceeding with book purchase...\n");
+                buyBook(); 
+                break;
                     
-            case 5: deleteBook();
-                   break;
+            case 5: 
+                printf("\tDeleting a book...\n");
+                deleteBook();
+                break;
                    
-            case 6: updateBook(); 
+            
+            case 6: 
+                printf("\tUpdating book information...\n");
+                updateBook(); 
                 break;
                 
-            case 7: addUser(); 
-                    break;
-                    
-            case 8: loginUser(); 
-                    break;
-                    
-            case 9: Suggest_Book();
-                    break;
-             case 10: printf("Others\n");
-                    break;
-           //  user can exit from this system          
-            case 11: 
-            printf("Exiting...\n");  
-            // Goodbye massage to user for using our system
-               goodbyeMessage();
-               printf("Exiting...\n");  
+            case 7: 
+                printf("\tRegistering a new user...\n");
+                addUser(); 
                 break;
-                // return;
-          
-            // user dial wrong input!!!  
+                    
+            case 8: 
+                printf("\tLogging in as a user...\n");
+                loginUser(); 
+                break;
+                    
+            case 9: 
+                printf("\tSuggesting books...\n");
+                Suggest_Book();
+                break;
+
+            case 10: 
+                printf("\tHandling other tasks...\n");
+                Others();
+                break;
+
+            case 11: 
+                printf("\tExiting the system...\n");  
+                goodbyeMessage();
+                break;
+
             default: 
-             printf("Invalid choice.\n");
+                printf("\tInvalid choice. Please try again.\n");
         }
 
-    } 
-    while (choice != 11);
-    
-     return 0;
-}
+        printDecorativeLine();
+        
+    } while (choice != 11);
 
+    return 0;
+}
