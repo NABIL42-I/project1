@@ -1339,52 +1339,71 @@ void showCustomerFeedback() {
 }
 
 //                                                 user have many option to choose
-void Others(){
-       int com;
-       printf("What's on your mind to do?\n\n");
+// This function displays the "Others" menu where the user can choose additional features 
+// such as viewing a calendar, team members, giving feedback, viewing feedback, or checking the current time.
+
+void Others() {
+    int com;
+
+    // Displaying the "Others" menu options to the user
+    printf("What's on your mind to do?\n\n");
     printf("\n\t\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
     printf("\n\t\t\t| (1) Calender                 |");
     printf("\n\t\t\t| (2) Team Member              |");
     printf("\n\t\t\t| (3) Customer Feedback        |");
-    printf("\n\t\t\t| (4) show Previous Feedback   |");
-    printf("\n\t\t\t| (4) Time                     |");
+    printf("\n\t\t\t| (4) Show Previous Feedback   |");
+    printf("\n\t\t\t| (5) Time                     |");  // Fixed the duplicate (4) to (5)
     printf("\n\t\t\t|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n");
+
+    // Asking the user to select an option
     printf("Please, Select !!\n");
     printf("Enter : ");
-     scanf("%d",&com);
-     if(com==1){
-       int year =  calender();
+    scanf("%d", &com);  // Reading user input
+
+    // Option 1: Show calendar for a given year
+    if (com == 1) {
+        int year = calender();  // Call calendar function and store returned year
+
+        // Display confirmation message
         printf("\n\n");
         printf("\n\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        printf("\n\t\t\t   Correctly generates the calendar for the year %d  \n",year);
+        printf("\n\t\t\t   Correctly generates the calendar for the year %d  \n", year);
         printf("\n\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        // printf("%d",year);
-    
+
         // Prompt user to return to the main menu
         printf("\n\t\t\tPress Enter to return to the main menu...");
-        getchar(); // consume leftover newline
-        getchar(); // wait for user input
-     }
-     else if(com==2){
-           Credits();
-     }
-    else if(com==3){
-        customer_feedback();
+        getchar(); // Consume leftover newline character
+        getchar(); // Wait for user to press Enter
     }
-    else if(com==4){
-        showCustomerFeedback();
+    // Option 2: Show credits (team members)
+    else if (com == 2) {
+        Credits();  // Display team member information
     }
-    else if(com==5){
-        showCurrentDateTime();
+    // Option 3: Collect customer feedback
+    else if (com == 3) {
+        customer_feedback();  // Collect and save customer feedback
     }
+    // Option 4: Show previously collected customer feedback
+    else if (com == 4) {
+        showCustomerFeedback();  // Display stored feedback
+    }
+    // Option 5: Show current date and time
+    else if (com == 5) {
+        showCurrentDateTime();  // Display system date and time
+    }
+    // Invalid option
     else {
         printf("-------------Invalid Try Once more!!!!----------------\n");
     }
 }
-// Main menu
+
+
+//                                                       DecorativeLIne Function
 void printDecorativeLine() {
     printf("\n=============================================================\n");
 }
+
+//                                                            Main Function
 int main() {
     int choice;
 
@@ -1399,8 +1418,8 @@ int main() {
     
     showMotivationalQuote();
 
-    do
-    {
+    do{
+//                                                                 Main Menu
         printDecorativeLine();
         printf("\t~~~~~~Online Book Shop Menu~~~~~~");
         printDecorativeLine();
