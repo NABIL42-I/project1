@@ -1469,7 +1469,6 @@ int main() {
                 printf("\tDeleting a book...\n");
                 deleteBook();
                 break;
-                   
             
             case 6: 
                 printf("\tUpdating book information...\n");
