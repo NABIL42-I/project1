@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <conio.h>  
+#include <stdbool.h>
 #define MAX_BOOKS 100
 #define MAX_USERS 100
 #define MAX_TITLE_LENGTH 100
@@ -1294,7 +1295,6 @@ void showCurrentDateTime() {
 
     printf("====================================================\n");
 }
-
 //                                                                          Function to show previously submitted customer feedback
 void showCustomerFeedback() {
     system("cls"); // Clear the screen
